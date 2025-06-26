@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController" style="-fx-background-color: linear-gradient(to bottom, #e0e0e0, #ffffff);">
+    <VBox alignment="CENTER" spacing="15" maxWidth="300" style="-fx-background-color: white; -fx-padding: 30; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);">
+        <Label text="Welcome Back" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+
+        <TextField fx:id="usernameField" promptText="Username" />
+        <PasswordField fx:id="passwordField" promptText="Password" />
+
+        <Button text="Login" onAction="#handleLogin" maxWidth="Infinity" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5;"/>
+
+        <Label fx:id="errorLabel" textFill="red" style="-fx-font-size: 10;"/>
+
+        <Hyperlink text="Forgot Password?" style="-fx-font-size: 10;"/>
+    </VBox>
+</StackPane>
