@@ -52,7 +52,7 @@
                     <MenuItem text="Up-Down" />
                 </Menu>
                 <Menu text="Help">
-                    <MenuItem text="How to use" />
+                    <MenuItem text="How to use" onAction="#handleHelpHowToUse"/>
                     <MenuItem text="FAQ" />
                     <MenuItem text="Report" />
 

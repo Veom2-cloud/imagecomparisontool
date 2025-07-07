@@ -92,7 +92,17 @@ private void toggleSideBarContent() {
         System.out.println("Settings: Side-By-Side triggered");
     }
 
-   
+   @FXML
+private void handleHelpHowToUse() {
+    System.out.println("Help: How to Use triggered");
+
+    // Option 1: Show quick instructions in the title bar
+    titleLabel.setText("📘 To compare files: Upload Left & Right files, adjust zoom, then click Compare");
+
+    // Option 2 (Optional): Load help view into centralWorkingArea
+    // loadViewIntoCentralArea("how_to_use_view.fxml");
+}
+
 
     // HELP actions
     @FXML protected void handleHelpElementComparison() {
