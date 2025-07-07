@@ -3,19 +3,35 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Pos?>
 
-<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController" style="-fx-background-color: linear-gradient(to bottom, #e0e0e0, #ffffff);">
-    <VBox alignment="CENTER" spacing="15" maxWidth="300" style="-fx-background-color: white; -fx-padding: 30; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);">
-        <Label text="Welcome Back" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+<StackPane xmlns="http://javafx.com/javafx/17"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="LoginController"
+           alignment="CENTER"
+           style="-fx-background-color: linear-gradient(to right, #eceff1, #ffffff);">
 
-        <TextField fx:id="usernameField" promptText="Username" />
-        <PasswordField fx:id="passwordField" promptText="Password" />
+    <HBox spacing="0" alignment="CENTER"
+          maxWidth="600" maxHeight="350"
+          style="-fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.3, 0, 2);">
 
-        <Button text="Login" onAction="#handleLogin" maxWidth="Infinity" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5;"/>
+        <!-- Left Panel: Login Box -->
+        <VBox alignment="CENTER" spacing="15" prefWidth="280"
+              style="-fx-background-color: white; -fx-padding: 30 20;">
+            <Label text="Login"
+                   style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+            <TextField fx:id="usernameField" promptText="Username" style="-fx-pref-width: 220;"/>
+            <PasswordField fx:id="passwordField" promptText="Password" style="-fx-pref-width: 220;"/>
+            <Button text="Login"
+                    onAction="#handleLogin"
+                    style="-fx-background-color: #64b5f6; -fx-text-fill: white; -fx-background-radius: 5; -fx-pref-width: 220;"/>
+            <Label fx:id="errorLabel" textFill="red" style="-fx-font-size: 10;"/>
+        </VBox>
 
-        <Label fx:id="errorLabel" textFill="red" style="-fx-font-size: 10;"/>
-
-        <Hyperlink text="Forgot Password?" style="-fx-font-size: 10;"/>
-    </VBox>
+        <!-- Right Panel: Title -->
+        <StackPane prefWidth="320" style="-fx-background-color: #64b5f6;">
+            <Label text="Application Comparison Tool"
+                   style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: white;"/>
+        </StackPane>
+    </HBox>
 </StackPane>

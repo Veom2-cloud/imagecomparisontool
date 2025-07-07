@@ -1,74 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" spacing="10" style="-fx-background-color: #ffffff; -fx-padding: 10;"
-      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FileCompareController">
-    <padding>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-    </padding>
-    <HBox alignment="CENTER" spacing="20" VBox.vgrow="ALWAYS">
-        <!-- Left File View -->
-        <VBox HBox.hgrow="ALWAYS" alignment="TOP_CENTER" style="-fx-border-color: #ccc; -fx-border-width: 1; -fx-background-color: #f9f9f9; -fx-padding: 5;">
-            <HBox alignment="CENTER_LEFT" spacing="5" style="-fx-background-color: #e0e0e0; -fx-padding: 3; -fx-min-height: 30;">
-                <Label text="DXC" style="-fx-font-weight: bold;"/>
-                <Label text="Last Name:" style="-fx-font-size: 10;"/>
-                <TextField promptText="Name" prefWidth="80" style="-fx-font-size: 10;"/>
-                <Label text="Last Name ID:"/>
-                <TextField promptText="ID" prefWidth="60" style="-fx-font-size: 10;"/>
-                <Region HBox.hgrow="ALWAYS"/>
-                <Button text="-" style="-fx-font-size: 10;"/>
-                <Button text="+" style="-fx-font-size: 10;"/>
-                <Button text="X" style="-fx-font-size: 10;"/>
-            </HBox>
-            <!-- Placeholder for content (e.g., text area or image view) -->
-            <StackPane VBox.vgrow="ALWAYS" style="-fx-border-color: #ddd; -fx-border-width: 1;">
-                <!-- This is a placeholder. You'd load actual image/text content here. -->
-                <Label text="File Content Area (Left)" textFill="#aaa" />
-            </StackPane>
-            <HBox alignment="CENTER" spacing="5" style="-fx-padding: 5;">
-                <Button text="&lt;" style="-fx-font-size: 10;"/>
-                <ProgressBar prefWidth="100" progress="0.7" />
-                <Button text="&gt;" style="-fx-font-size: 10;"/>
-            </HBox>
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="FileCompareController"
+      spacing="10"
+      style="-fx-background-color: #ffffff; -fx-padding: 10;"
+      alignment="TOP_CENTER">
+
+    <Label text="Comparing Files" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+
+        <!-- LEFT PANEL -->
+        <VBox spacing="10" HBox.hgrow="ALWAYS" alignment="CENTER">
+            <Label text="Left File" style="-fx-font-weight: bold;"/>
+
+            <ScrollPane fitToWidth="true" fitToHeight="true" prefHeight="400" prefWidth="400">
+                <ImageView fx:id="leftImageView" preserveRatio="true"/>
+            </ScrollPane>
+
+            <Slider fx:id="leftZoomSlider" min="0.5" max="2.0" value="1.0" prefWidth="150"/>
+            <Button text="Upload Left" onAction="#handleLeftUpload"/>
         </VBox>
 
-        <!-- Right File View -->
-        <VBox HBox.hgrow="ALWAYS" alignment="TOP_CENTER" style="-fx-border-color: #ccc; -fx-border-width: 1; -fx-background-color: #f9f9f9; -fx-padding: 5;">
-            <HBox alignment="CENTER_LEFT" spacing="5" style="-fx-background-color: #e0e0e0; -fx-padding: 3; -fx-min-height: 30;">
-                <Label text="DXC" style="-fx-font-weight: bold;"/>
-                <Label text="Last Name:" style="-fx-font-size: 10;"/>
-                <TextField promptText="Name" prefWidth="80" style="-fx-font-size: 10;"/>
-                <Label text="Last Name ID:"/>
-                <TextField promptText="ID" prefWidth="60" style="-fx-font-size: 10;"/>
-                <Region HBox.hgrow="ALWAYS"/>
-                <Button text="-" style="-fx-font-size: 10;"/>
-                <Button text="+" style="-fx-font-size: 10;"/>
-                <Button text="X" style="-fx-font-size: 10;"/>
-            </HBox>
-            <!-- Placeholder for content (e.g., text area or image view) -->
-            <StackPane VBox.vgrow="ALWAYS" style="-fx-border-color: #ddd; -fx-border-width: 1;">
-                <!-- This is a placeholder. You'd load actual image/text content here. -->
-                <Label text="File Content Area (Right)" textFill="#aaa" />
-            </StackPane>
-            <HBox alignment="CENTER" spacing="5" style="-fx-padding: 5;">
-                <Button text="&lt;" style="-fx-font-size: 10;"/>
-                <ProgressBar prefWidth="100" progress="0.7" />
-                <Button text="&gt;" style="-fx-font-size: 10;"/>
-            </HBox>
+        <!-- RIGHT PANEL -->
+        <VBox spacing="10" HBox.hgrow="ALWAYS" alignment="CENTER">
+            <Label text="Right File" style="-fx-font-weight: bold;"/>
+
+            <ScrollPane fitToWidth="true" fitToHeight="true" prefHeight="400" prefWidth="400">
+                <ImageView fx:id="rightImageView" preserveRatio="true"/>
+            </ScrollPane>
+
+            <Slider fx:id="rightZoomSlider" min="0.5" max="2.0" value="1.0" prefWidth="150"/>
+            <Button text="Upload Right" onAction="#handleRightUpload"/>
         </VBox>
     </HBox>
-    <HBox alignment="CENTER_LEFT" spacing="10" VBox.vgrow="NEVER">
-        <Label text="3 Difference Found" style="-fx-font-weight: bold;"/>
-        <Region HBox.hgrow="ALWAYS"/>
-        <Label text="190+" style="-fx-text-fill: gray;"/>
-        <Button text="Up-Down View" style="-fx-background-color: #e0e0e0; -fx-background-radius: 5; -fx-border-radius: 5;"/>
-        <Button text="Gray Scale" style="-fx-background-color: #e0e0e0; -fx-background-radius: 5; -fx-border-radius: 5;"/>
-        <Button text="Together Mode" style="-fx-background-color: #e0e0e0; -fx-background-radius: 5; -fx-border-radius: 5;"/>
+
+    <!-- Compare Button -->
+    <HBox alignment="CENTER" spacing="10">
+        <Button text="Compare" onAction="#handleCompare"
+                style="-fx-background-color: #4caf50; -fx-text-fill: white;"/>
     </HBox>
 </VBox>
