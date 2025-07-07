@@ -92,11 +92,7 @@ private void toggleSideBarContent() {
         System.out.println("Settings: Side-By-Side triggered");
     }
 
-    @FXML protected void handleSettingsUpDown() {
-        titleLabel.setText("Settings: Up-Down View");
-        // Adjust layout orientation to vertical
-        System.out.println("Settings: Up-Down triggered");
-    }
+   
 
     // HELP actions
     @FXML protected void handleHelpElementComparison() {

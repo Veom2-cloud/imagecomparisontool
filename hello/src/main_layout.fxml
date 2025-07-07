@@ -37,16 +37,25 @@
                 <Menu text="View">
                     <MenuItem text="Difference Only" onAction="#handleViewDifferenceOnly"/>
                     <MenuItem text="All" onAction="#handleViewAll"/>
+                    <MenuItem text="Highlight" onAction="#handleReportHighlight"/>                   
+                    <MenuItem text="Side-By-Side/Up-Down" onAction="#handleSettingsSideBySide"/>
+                    <MenuItem text="Element Comparison" onAction="#handleHelpElementComparison"/>
                 </Menu>
                 <Menu text="Report">
-                    <MenuItem text="Highlight" onAction="#handleReportHighlight"/>
+                    <MenuItem text="Generate report" />
+                    <MenuItem text="Export Difference" />
+                    <MenuItem text="Export Xml"/>
+
                 </Menu>
                 <Menu text="Settings">
-                    <MenuItem text="Side-By-Side" onAction="#handleSettingsSideBySide"/>
-                    <MenuItem text="Up-Down" onAction="#handleSettingsUpDown"/>
+                    <MenuItem text="Save layout" />
+                    <MenuItem text="Up-Down" />
                 </Menu>
                 <Menu text="Help">
-                    <MenuItem text="Element Comparison" onAction="#handleHelpElementComparison"/>
+                    <MenuItem text="How to use" />
+                    <MenuItem text="FAQ" />
+                    <MenuItem text="Report" />
+
                 </Menu>
             </MenuBar>
         </VBox>
