@@ -1,9 +1,12 @@
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -19,6 +22,8 @@ public class HelloController {
     @FXML private VBox sideBarContent;
     @FXML private VBox sideBar;
     @FXML private Button toggleButton;
+  
+@FXML private void handleReportExport() { /* Export comparison report */ }
 
     @FXML
     private void initialize() {
@@ -101,6 +106,21 @@ private void handleHelpHowToUse() {
 
     // Option 2 (Optional): Load help view into centralWorkingArea
     // loadViewIntoCentralArea("how_to_use_view.fxml");
+}
+@FXML
+private void handleShowLastSession() {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("last_session.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setTitle("Last Session");
+        stage.setScene(new Scene(root, 500, 400));
+        stage.initOwner(((Stage) centralWorkingArea.getScene().getWindow()));
+        stage.show();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
 }
 
 

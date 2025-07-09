@@ -68,16 +68,27 @@
         <VBox fx:id="sideBar" prefWidth="250" spacing="10"
               style="-fx-background-color: #f8f8f8; -fx-padding: 10;
                      -fx-border-color: #ccc; -fx-border-width: 0 1 0 0;">
+            
             <Separator/>
-            <VBox spacing="6">
-                <Label text="Folder Browse"/>
-                <Label text="File Browse"/>
-                <Label text="Last Session"/>
-                <Label text="Current Folder/Files list"/>
+
+            <!-- Navigation Actions -->
+            <VBox spacing="8">
+                <Button text="Browse Folder" onAction="#handleFolderBrowse"
+                        style="-fx-background-color:rgb(1, 6, 11); -fx-text-fill: white;"/>
+                <Button text="Browse File" onAction="#handleFileBrowse"
+                        style="-fx-background-color: rgb(1, 6, 11); -fx-text-fill: white;"/>
+                <Button text="Load Last Session" onAction="#handleShowLastSession"
+                        style="-fx-background-color: rgb(1, 6, 11); -fx-text-fill: white;"/>
+                <Button text="Show Current Files" 
+                        style="-fx-background-color: rgb(1, 6, 11); -fx-text-fill: white;"/>
             </VBox>
+
             <Separator/>
+
+            <!-- File Lists -->
             <Label text="Left List" style="-fx-font-weight: bold;"/>
             <ListView fx:id="leftFileList" VBox.vgrow="ALWAYS"/>
+
             <Label text="Right List" style="-fx-font-weight: bold;"/>
             <ListView fx:id="rightFileList" VBox.vgrow="ALWAYS"/>
         </VBox>
@@ -91,6 +102,7 @@
         </VBox>
     </HBox>
 </left>
+
 
 
 
