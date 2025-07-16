@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.File;
 
@@ -21,9 +20,24 @@ public class HelloController {
 @FXML private ImageView leftImageView;
 @FXML private ImageView rightImageView;
 
+private FileCompareController compareController;
+
+public void setCompareController(FileCompareController controller) {
+    this.compareController = controller;
+}
+
 
 private File leftFolder;
 private File rightFolder;
+
+public void addRightFile(String filename, File folder) {
+    rightFolder = folder;
+    rightFileList.getItems().add(filename);
+}
+public void addLeftFile(String filename, File folder) {
+    leftFolder = folder;
+    leftFileList.getItems().add(filename);
+}
 
     @FXML private Label titleLabel;
     @FXML private ListView<String> leftFileList;
@@ -40,11 +54,12 @@ private File rightFolder;
 @FXML
 private void handleOpenFileCompare() {
     try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/file_compare_layout.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("file_compare_layout.fxml"));
         Parent compareUI = loader.load();
 
         FileCompareController compareController = loader.getController();
         compareController.setMainController(this);  // Wiring controller
+        setCompareController(compareController);            // allows HelloController to send image click info
 
         centralWorkingArea.getChildren().clear();   // Clear previous content
         centralWorkingArea.getChildren().add(compareUI);  // Load compare view here
@@ -60,19 +75,22 @@ private void handleOpenFileCompare() {
     public void initialize() {
          leftFileList.setItems(FXCollections.observableArrayList());
     rightFileList.setItems(FXCollections.observableArrayList());
-        leftFileList.setOnMouseClicked(event -> {
+
+
+leftFileList.setOnMouseClicked(event -> {
         String selectedFile = leftFileList.getSelectionModel().getSelectedItem();
-        if (selectedFile != null && leftFolder != null) {
+        if (selectedFile != null && leftFolder != null && compareController != null) {
             File imageFile = new File(leftFolder, selectedFile);
-            leftImageView.setImage(new Image(imageFile.toURI().toString()));
+            compareController.showLeftImage(imageFile); // 👉 show image in comparison view
         }
     });
 
+    // Handle right list click
     rightFileList.setOnMouseClicked(event -> {
         String selectedFile = rightFileList.getSelectionModel().getSelectedItem();
-        if (selectedFile != null && rightFolder != null) {
+        if (selectedFile != null && rightFolder != null && compareController != null) {
             File imageFile = new File(rightFolder, selectedFile);
-            rightImageView.setImage(new Image(imageFile.toURI().toString()));
+            compareController.showRightImage(imageFile); // 👉 show image in comparison view
         }
     });
     }

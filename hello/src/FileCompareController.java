@@ -23,6 +23,20 @@ public class FileCompareController {
         this.mainController = controller;
     }
 
+
+    public void showLeftImage(File imageFile) {
+    if (imageFile != null && leftImageView != null) {
+        leftImageView.setImage(new Image(imageFile.toURI().toString()));
+    }
+}
+
+public void showRightImage(File imageFile) {
+    if (imageFile != null && rightImageView != null) {
+        rightImageView.setImage(new Image(imageFile.toURI().toString()));
+    }
+}
+
+
    @FXML
     private void initialize() {
         leftImageView.setPreserveRatio(true);
@@ -38,31 +52,32 @@ public class FileCompareController {
     }
 
     @FXML
-    private void handleLeftUpload() {
-        File file = openImageFile();
-        if (file != null) {
-            Image image = new Image(file.toURI().toString());
-            leftImageView.setImage(image);
-            leftZoomSlider.setValue(1.0);
-            leftImageView.setFitWidth(400);
-                        if (mainController != null) mainController.addLeftFile(file.getName());
-                        System.out.println("Uploading " + file.getName());
-        }
-    }
+private void handleLeftUpload() {
+    File file = openImageFile();
+    if (file != null) {
+        leftImageView.setImage(new Image(file.toURI().toString()));
+        leftZoomSlider.setValue(1.0);
+        leftImageView.setFitWidth(400);
 
-    @FXML
-    private void handleRightUpload() {
-        File file = openImageFile();
-        if (file != null) {
-            Image image = new Image(file.toURI().toString());
-            rightImageView.setImage(image);
-            rightZoomSlider.setValue(1.0);
-            rightImageView.setFitWidth(400);
-                        if (mainController != null) mainController.addRightFile(file.getName());
-                        System.out.println("Uploading " + file.getName());
-        }
+        if (mainController != null)
+            mainController.addLeftFile(file.getName(), file.getParentFile()); // ✅ send folder
     }
+}
 
+@FXML
+private void handleRightUpload() {
+    File file = openImageFile();
+    if (file != null) {
+        rightImageView.setImage(new Image(file.toURI().toString()));
+        rightZoomSlider.setValue(1.0);
+        rightImageView.setFitWidth(400);
+
+        if (mainController != null)
+            mainController.addRightFile(file.getName(), file.getParentFile()); // ✅ send folder
+    }
+}
+
+    
     private File openImageFile() {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Choose Image");
