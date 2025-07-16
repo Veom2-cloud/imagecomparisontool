@@ -30,7 +30,7 @@
             <MenuBar>
                 <Menu text="Session">
                     <MenuItem text="Folder" onAction="#handleFolderBrowse"/>
-                    <MenuItem text="File" onAction="#handleFileBrowse"/>
+                    <MenuItem text="File" onAction="#handleOpenFileCompare"/>
                     <MenuItem text="Save Session" onAction="#handleSessionSave"/>
                     <MenuItem text="Recent" onAction="#handleSessionRecent"/>
                 </Menu>
@@ -75,12 +75,13 @@
             <VBox spacing="8">
                 <Button text="Browse Folder" onAction="#handleFolderBrowse"
                         style="-fx-background-color:rgb(1, 6, 11); -fx-text-fill: white;"/>
-                <Button text="Browse File" onAction="#handleFileBrowse"
+                <Button text="Browse File" onAction="#handleOpenFileCompare"
                         style="-fx-background-color: rgb(1, 6, 11); -fx-text-fill: white;"/>
                 <Button text="Load Last Session" onAction="#handleShowLastSession"
                         style="-fx-background-color: rgb(1, 6, 11); -fx-text-fill: white;"/>
                 <Button text="Show Current Files" 
                         style="-fx-background-color: rgb(1, 6, 11); -fx-text-fill: white;"/>
+                    
             </VBox>
 
             <Separator/>

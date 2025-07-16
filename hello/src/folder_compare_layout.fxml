@@ -65,5 +65,10 @@
                 <Button text="&gt;" />
             </HBox>
         </VBox>
+        
+    </HBox>
+     <HBox alignment="CENTER" spacing="10">
+        <Button text="Convert" 
+                style="-fx-background-color: #4caf50; -fx-text-fill: white;"/>
     </HBox>
 </VBox>

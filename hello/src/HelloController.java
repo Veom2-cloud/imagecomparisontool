@@ -1,3 +1,4 @@
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -7,12 +8,22 @@ import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.io.File;
+
 
 import java.io.IOException;
 
 public class HelloController {
 
 
+@FXML private ImageView leftImageView;
+@FXML private ImageView rightImageView;
+
+
+private File leftFolder;
+private File rightFolder;
 
     @FXML private Label titleLabel;
     @FXML private ListView<String> leftFileList;
@@ -25,19 +36,57 @@ public class HelloController {
   
 @FXML private void handleReportExport() { /* Export comparison report */ }
 
-    @FXML
-    private void initialize() {
-        leftFileList.getItems().addAll("File 1", "File 2");
-        rightFileList.getItems().addAll("File 1", "File 2", "File 3");
 
-       
+@FXML
+private void handleOpenFileCompare() {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/file_compare_layout.fxml"));
+        Parent compareUI = loader.load();
+
+        FileCompareController compareController = loader.getController();
+        compareController.setMainController(this);  // Wiring controller
+
+        centralWorkingArea.getChildren().clear();   // Clear previous content
+        centralWorkingArea.getChildren().add(compareUI);  // Load compare view here
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+
+
+   @FXML
+    public void initialize() {
+         leftFileList.setItems(FXCollections.observableArrayList());
+    rightFileList.setItems(FXCollections.observableArrayList());
+        leftFileList.setOnMouseClicked(event -> {
+        String selectedFile = leftFileList.getSelectionModel().getSelectedItem();
+        if (selectedFile != null && leftFolder != null) {
+            File imageFile = new File(leftFolder, selectedFile);
+            leftImageView.setImage(new Image(imageFile.toURI().toString()));
+        }
+    });
+
+    rightFileList.setOnMouseClicked(event -> {
+        String selectedFile = rightFileList.getSelectionModel().getSelectedItem();
+        if (selectedFile != null && rightFolder != null) {
+            File imageFile = new File(rightFolder, selectedFile);
+            rightImageView.setImage(new Image(imageFile.toURI().toString()));
+        }
+    });
     }
 
+    public void addLeftFile(String filename) {
+        leftFileList.getItems().add(filename);
+    }
+
+    public void addRightFile(String filename) {
+        rightFileList.getItems().add(filename);
+    }
+
+
     // Sidebar toggle
-
-
-
-
 @FXML
 private void toggleSideBarContent() {
     boolean isVisible = sideBar.isVisible();

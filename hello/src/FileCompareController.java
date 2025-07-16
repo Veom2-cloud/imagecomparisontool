@@ -17,12 +17,17 @@ public class FileCompareController {
 
     @FXML private Button toggleButton; // optional if used externally
 
-    @FXML
+     private HelloController mainController;  // Reference to main controller
+
+    public void setMainController(HelloController controller) {
+        this.mainController = controller;
+    }
+
+   @FXML
     private void initialize() {
         leftImageView.setPreserveRatio(true);
         rightImageView.setPreserveRatio(true);
 
-        // Apply zoom scale to fitWidth
         leftZoomSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
             leftImageView.setFitWidth(400 * newVal.doubleValue());
         });
@@ -40,6 +45,8 @@ public class FileCompareController {
             leftImageView.setImage(image);
             leftZoomSlider.setValue(1.0);
             leftImageView.setFitWidth(400);
+                        if (mainController != null) mainController.addLeftFile(file.getName());
+                        System.out.println("Uploading " + file.getName());
         }
     }
 
@@ -51,6 +58,8 @@ public class FileCompareController {
             rightImageView.setImage(image);
             rightZoomSlider.setValue(1.0);
             rightImageView.setFitWidth(400);
+                        if (mainController != null) mainController.addRightFile(file.getName());
+                        System.out.println("Uploading " + file.getName());
         }
     }
 
