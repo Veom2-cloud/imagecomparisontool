@@ -63,6 +63,7 @@ private void handleOpenFileCompare() {
 
         centralWorkingArea.getChildren().clear();   // Clear previous content
         centralWorkingArea.getChildren().add(compareUI);  // Load compare view here
+    titleLabel.setText("Compare File");
 
     } catch (Exception e) {
         e.printStackTrace();
@@ -121,7 +122,6 @@ private void toggleSideBarContent() {
     }
 
     @FXML protected void handleFileBrowse() {
-        titleLabel.setText("Comparing File1.png");
         loadViewIntoCentralArea("file_compare_layout.fxml");
     }
 

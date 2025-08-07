@@ -21,7 +21,7 @@
                 <Label text="DXC Logo" style="-fx-font-weight: bold; -fx-text-fill: white;"/>
                 <Region HBox.hgrow="ALWAYS"/>
                 <Label fx:id="titleLabel"
-                       text="Comparing File1.png"
+                       text=""
                        style="-fx-font-weight: bold; -fx-font-size: 14; -fx-text-fill: #333;"/>
                 <Region HBox.hgrow="ALWAYS"/>
             </HBox>
